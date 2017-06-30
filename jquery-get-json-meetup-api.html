@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<!-- https://api.meetup.com/find/events?photo-host=public&sig_id=224847105&sig=f8e37193cc99ef8da174b16ddd6ed43d2aa6aad2
+
+https://api.meetup.com/find/events?photo-host=public&sig_id=224847105&sig=f8e37193cc99ef8da174b16ddd6ed43d2aa6aad2&callback=c
+
+https://api.meetup.com/find/events?photo-host=public&sig_id=224847105&sig=f8e37193cc99ef8da174b16ddd6ed43d2aa6aad2&callback=c -->
+</head>
+
+<body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$.ajax({
+	dataType: "jsonp",
+	url: "https://api.meetup.com/find/events",
+	data: {
+		"photo-host": "public",
+		"sig_id": "224847105",
+		"sig": "f8e37193cc99ef8da174b16ddd6ed43d2aa6aad2",
+		"callback": "c"
+	}
+}).then(
+	function(response) {
+		console.log('response from meetup:  ', response);
+		response.data.forEach(function(event) {
+			console.log(event.group.name);	
+		})
+	},
+	function(error) {
+		console.log('error from meetup', error);
+	}
+);
+</script>
+</body>
+</html>
